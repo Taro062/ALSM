@@ -1,3 +1,4 @@
-#ALSM: An Attentive Liquid State Machine with Interactive Gating for Robust Spatio-Temporal Visual Recognition
-
-To ensure the integrity of the review process and to perform final code cleanup, the complete source code, training scripts, and pre-trained models will be open-sourced and uploaded to this repository immediately upon the paper's acceptance. 
+ALSM: Attentive Liquid State Machine
+Status: Code for the manuscript under review at The Visual Computer.
+1. Environment Setup:Requires Python 3.8+ and PyTorch.
+2.Data Preparation:Fashion-MNIST,N-MNIST and DVS128 Gesture.
