@@ -5,9 +5,7 @@
 ## Overview
 This repository contains the official PyTorch implementation for **Bidirectional Gating for Spatio-Temporal Vision: An Attentive Liquid State Machine**. 
 
-We introduce the **Attentive Liquid State Machine (ALSM)**, a parallel dual-stream architecture designed for robust spatio-temporal visual recognition. 
-
-Our model achieves competitive performance on standard static and neuromorphic benchmarks, including Fashion-MNIST, N-MNIST, and DVS128 Gesture datasets.
+We introduce the **Attentive Liquid State Machine (ALSM)**, a parallel dual-stream architecture designed for robust spatio-temporal visual recognition. Our model achieves competitive performance on standard static and neuromorphic benchmarks, including Fashion-MNIST, N-MNIST, and DVS128 Gesture datasets.
 
 ## Dependencies and Requirements
 To run the code, ensure your environment meets the following requirements:
