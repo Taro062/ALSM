@@ -22,26 +22,6 @@ from spiklsmAG3 import spikformerLSM
 import utils
 from spikingjelly.datasets import dvs128_gesture
 
-class FocalLoss(nn.Module):
-    def __init__(self, alpha=1, gamma=2, reduction='mean'):
-        super(FocalLoss, self).__init__()
-        self.alpha = alpha
-        self.gamma = gamma
-        self.reduction = reduction
-
-    def forward(self, inputs, targets):
-        ce_loss = F.cross_entropy(inputs, targets, reduction='none')
-        pt = torch.exp(-ce_loss)
-        focal_loss = self.alpha * (1 - pt) ** self.gamma * ce_loss
-
-        if self.reduction == 'mean':
-            return focal_loss.mean()
-        elif self.reduction == 'sum':
-            return focal_loss.sum()
-        else:
-            return focal_loss
-
-
 # 自定义DVS128Gesture数据集包装类
 class DVS128GestureDataset(torch.utils.data.Dataset):
 
@@ -116,22 +96,6 @@ def load_data(args):
     print(f"测试集大小: {len(test_set)}")
 
     return data_loader, data_loader_test
-
-
-# 组合损失函数
-class CombinedLoss(nn.Module):
-    def __init__(self, focal_weight=0.7, smooth_weight=0.3, smoothing=0.1):
-        super(CombinedLoss, self).__init__()
-        self.focal_loss = FocalLoss(alpha=1, gamma=2)
-        self.smooth_loss = LabelSmoothingCrossEntropy(smoothing=smoothing)
-        self.focal_weight = focal_weight
-        self.smooth_weight = smooth_weight
-
-    def forward(self, inputs, targets):
-        focal = self.focal_loss(inputs, targets)
-        smooth = self.smooth_loss(inputs, targets)
-        return self.focal_weight * focal + self.smooth_weight * smooth
-
 
 # 安全重置网络状态
 def safe_reset_net(net):
@@ -472,11 +436,11 @@ def main(args):
         # 训练时使用SoftTargetCrossEntropy损失函数
         train_criterion = SoftTargetCrossEntropy()
         # 评估时使用标准交叉熵损失函数
-        eval_criterion = CombinedLoss(focal_weight=0.7, smooth_weight=0.3, smoothing=args.smoothing)
+        eval_criterion = torch.nn.CrossEntropyLoss()
     else:
         # 使用组合损失函数
-        train_criterion = CombinedLoss(focal_weight=0.7, smooth_weight=0.3, smoothing=args.smoothing)
-        eval_criterion = train_criterion
+        train_criterion = LabelSmoothingCrossEntropy(smoothing=args.smoothing)
+        eval_criterion = torch.nn.CrossEntropyLoss()
 
     # 仅评估模式
     if args.eval:
@@ -592,3 +556,4 @@ if __name__ == '__main__':
     args = parse_args()
     main(args)
     print("🎊 训练完成！")
+
