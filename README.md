@@ -1,6 +1,6 @@
 # Bidirectional Gating for Spatio-Temporal Vision: An Attentive Liquid State Machine
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18923549.svg)](https://doi.org/10.5281/zenodo.18923549) **Note to Readers**: This code is directly related to the manuscript currently submitted to **The Visual Computer**. Please cite this relevant manuscript if you use our code for your research.
+[![DOI](https://zenodo.org/badge/1168281068.svg)](https://doi.org/10.5281/zenodo.18923548) **Note to Readers**: This code is directly related to the manuscript currently submitted to **The Visual Computer**. Please cite this relevant manuscript if you use our code for your research.
 
 ## Overview
 This repository contains the official PyTorch implementation for **Bidirectional Gating for Spatio-Temporal Vision: An Attentive Liquid State Machine**. 
