@@ -3,7 +3,8 @@ ALSM: A Parallel Dual-Stream Attentive Liquid State Machine for Robust Spatio-Te
 This repository provides the implementation and training code for ALSM (Attentive Liquid State Machine), a parallel dual-stream spiking neural network designed for spatio-temporal visual recognition.
 
 Repository Structure
-ALSM/
+
+ALSM
 ├── CIFAR10-DVS/
 │   ├── model
 │   └── train
